@@ -94,3 +94,13 @@ void UPuzzlePlatformsGameInstance::Join(const FString& Address)
 	// PlayerController가 ClientTravel을 함을 잊지 말자
 	PlayerController->ClientTravel(Address, ETravelType::TRAVEL_Absolute);
 }
+
+// 인게임에서 -> 메인 메뉴로 다시 돌아온다. 
+void UPuzzlePlatformsGameInstance::LoadMainMenu()
+{
+	APlayerController* PlayerController = GetFirstLocalPlayerController();
+	if (!ensure(PlayerController != nullptr)) return;
+
+	// 메인메뉴로 Travel 한다. 
+	PlayerController->ClientTravel("/Game/MenuSystem/MainMenu", ETravelType::TRAVEL_Absolute);
+}

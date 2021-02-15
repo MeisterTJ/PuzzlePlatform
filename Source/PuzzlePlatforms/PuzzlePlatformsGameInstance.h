@@ -33,6 +33,8 @@ public:
 	UFUNCTION(Exec)
 	virtual void Join(const FString& Address) override;
 
+	virtual void LoadMainMenu() override;
+
 private:
 	TSubclassOf<class UUserWidget> MenuClass;
 	class UMainMenu* Menu_;

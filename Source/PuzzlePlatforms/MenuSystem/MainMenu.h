@@ -40,6 +40,10 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	class UButton* P_JoinBtn_;
 
+	// 게임 완전히 종료하는 버튼
+	UPROPERTY(meta = (BindWidget))
+	class UButton* P_QuitBtn_;
+
 	// 수정가능한 IP Address 텍스트
 	UPROPERTY(meta = (BindWidget))
 	class UEditableText* P_IPAddress_;
@@ -55,4 +59,7 @@ private:
 
 	UFUNCTION()
 	void OpenJoinMenu();
+
+	UFUNCTION()
+	void QuitPressed();
 };

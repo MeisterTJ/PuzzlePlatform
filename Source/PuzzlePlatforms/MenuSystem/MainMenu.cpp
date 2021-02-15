@@ -20,6 +20,8 @@ bool UMainMenu::Initialize()
 	P_JoinMenuBtn_->OnClicked.AddDynamic(this, &UMainMenu::OpenJoinMenu);
 	if (!ensure(P_BackBtn_ != nullptr)) return false;
 	P_BackBtn_->OnClicked.AddDynamic(this, &UMainMenu::OpenMainMenu);
+	if (!ensure(P_QuitBtn_ != nullptr)) return false;
+	P_QuitBtn_->OnClicked.AddDynamic(this, &UMainMenu::QuitPressed);
 
 	return true;
 }
@@ -64,4 +66,17 @@ void UMainMenu::OpenJoinMenu()
 
 	// 조인메뉴를 액티브 위젯으로 한다. 
 	P_MenuSwitcher_->SetActiveWidget(P_JoinMenu_);
+}
+
+// 앱을 완전히 종료한다. 
+void UMainMenu::QuitPressed()
+{
+	UWorld* World = GetWorld();
+	if (!ensure(World != nullptr)) return;
+
+	APlayerController* PlayerController = World->GetFirstPlayerController();
+	if (!ensure(PlayerController != nullptr)) return;
+
+	// quit 콘솔 커맨드를 날려서 종료한다. 
+	PlayerController->ConsoleCommand("quit");
 }
